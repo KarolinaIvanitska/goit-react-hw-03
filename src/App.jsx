@@ -14,12 +14,17 @@ function App() {
 
   const [contacts, setContacts] = useState(phoneContacts);
 
+  const handleDelete = (id) => {
+    console.log(id);
+    setContacts((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox />
-      <ContactList contacts={contacts} />
+      <ContactList contacts={contacts} onDelete={handleDelete} />
     </div>
   );
 }
