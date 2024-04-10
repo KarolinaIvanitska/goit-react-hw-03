@@ -27,6 +27,7 @@ label {
 
 .btn {
   width: fit-content;
+  margin: auto;
   color: beige;
   background-color: rgb(17, 65, 177);
 }
