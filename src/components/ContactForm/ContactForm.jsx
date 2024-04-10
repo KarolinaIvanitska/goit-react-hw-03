@@ -5,8 +5,8 @@ import * as Yup from "yup";
 const ContactForm = ({ addContact }) => {
   const addSchema = Yup.object().shape({
     name: Yup.string()
-      .min(3, "Field must be more then 3!")
-      .max(50, "Field must be less then 50!")
+      .min(3, `Field must be more then 3!`)
+      .max(50, `Field must be less then 50!`)
       .required("Required"),
     number: Yup.string()
       .min(3, "Field must be more then 3!")
@@ -18,6 +18,7 @@ const ContactForm = ({ addContact }) => {
     name: "",
     number: "",
   };
+
   const handleSubmit = (data, options) => {
     addContact({ ...data, id: nanoid() });
     options.resetForm();
@@ -32,12 +33,12 @@ const ContactForm = ({ addContact }) => {
         <label>
           Name
           <Field type="text" name="name" />
-          <ErrorMessage component="alert" name="name" />
+          <ErrorMessage component="span" name="name" />
         </label>
         <label>
           Number
           <Field type="text" name="number" />
-          <ErrorMessage component="alert" name="name" />
+          <ErrorMessage component="span" name="number" />
         </label>
         <button type="submit">Add contact</button>
       </Form>
