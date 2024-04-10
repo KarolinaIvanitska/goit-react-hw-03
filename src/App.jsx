@@ -5,18 +5,6 @@ import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
 
 function App() {
-  //Logic-localStorage
-  const [contacts, setContacts] = useState(() => {
-    const savedContacts = JSON.parse(window.localStorage.getItem("contacts"));
-    if (savedContacts?.length) {
-      return savedContacts;
-    } else return contactData;
-  });
-
-  useEffect(() => {
-    window.localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
-
   //contact-logic
   const phoneContacts = [
     { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
@@ -24,6 +12,7 @@ function App() {
     { id: "id-3", name: "Eden Clements", number: "645-17-79" },
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ];
+  const [contacts, setContacts] = useState(phoneContacts);
 
   const handleDelete = (id) => {
     console.log(id);
