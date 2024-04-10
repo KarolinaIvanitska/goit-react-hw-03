@@ -35,10 +35,15 @@ function App() {
 
   const filteredData = getFilteredData();
 
+  //Add contacts
+  const addContact = (contact) => {
+    setContacts((prev) => [contact, ...prev]);
+  };
+
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm addContact={addContact} />
       <SearchBox searchStr={searchStr} setSearch={setSearchStr} />
       <ContactList contacts={filteredData} onDelete={handleDelete} />
     </div>
