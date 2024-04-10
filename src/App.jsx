@@ -5,6 +5,7 @@ import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
 
 function App() {
+  //contact-logic
   const phoneContacts = [
     { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
     { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
@@ -18,13 +19,28 @@ function App() {
     console.log(id);
     setContacts((prev) => prev.filter((item) => item.id !== id));
   };
+  //=====================================
+
+  //Searchbar-logic
+  const [searchStr, setSearchStr] = useState("");
+  //=====================================
+
+  //Відфільтровані дані масиву - виконається пошук за ім'ям
+  const getFilteredData = () => {
+    return contacts.filter((item) =>
+      item.name.toLowerCase().includes(searchStr.toLowerCase())
+    );
+  };
+  //======================================
+
+  const filteredData = getFilteredData();
 
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm />
-      <SearchBox />
-      <ContactList contacts={contacts} onDelete={handleDelete} />
+      <SearchBox searchStr={searchStr} setSearch={setSearchStr} />
+      <ContactList contacts={filteredData} onDelete={handleDelete} />
     </div>
   );
 }
