@@ -1,17 +1,18 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { nanoid } from "nanoid";
 import * as Yup from "yup";
+import css from "./ContactForm.module.css";
 
 const ContactForm = ({ addContact }) => {
   const addSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, `Field must be more then 3!`)
       .max(50, `Field must be less then 50!`)
-      .required("Required"),
+      .required("Required!"),
     number: Yup.string()
       .min(3, "Field must be more then 3!")
       .max(50, "Field must be less then 50!")
-      .required("Required"),
+      .required("Required!"),
   });
 
   const initialValues = {
@@ -29,18 +30,20 @@ const ContactForm = ({ addContact }) => {
       onSubmit={handleSubmit}
       validationSchema={addSchema}
     >
-      <Form>
-        <label>
+      <Form className={css.form_search}>
+        <label className={css.label}>
           Name
-          <Field type="text" name="name" />
-          <ErrorMessage component="span" name="name" />
+          <Field className={css.field} type="text" name="name" />
+          <ErrorMessage className={css.error} component="span" name="name" />
         </label>
-        <label>
+        <label className={css.label}>
           Number
-          <Field type="text" name="number" />
-          <ErrorMessage component="span" name="number" />
+          <Field className={css.field} type="text" name="number" />
+          <ErrorMessage className={css.error} component="span" name="number" />
         </label>
-        <button type="submit">Add contact</button>
+        <button className={css.btn} type="submit">
+          Add contact
+        </button>
       </Form>
     </Formik>
   );
